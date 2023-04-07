@@ -2,15 +2,11 @@ package com.gerador.notafiscal.taxCalculators;
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.Rule;
 import org.junit.Test;
 
 public class ConsultingTaxCalculatorTest {
 
     static public double maxDelta = 0.0001;
-
-    @Rule
-    public TaxNegativeValueException thrown = TaxNegativeValueException.none();
 
     @Test
     public void shouldCalculateTax() {
@@ -26,13 +22,9 @@ public class ConsultingTaxCalculatorTest {
         assertEquals(0.0, tax, maxDelta);
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void shouldThrowErrorWithNegativeValue() {
         ConsultingTaxCalculator consultingTaxCalculator = new ConsultingTaxCalculator();
-
-        thrown.expect(TaxNegativeValueException.class);
-        thrown.expectMessage("Valor para o calculo de imposto deve ser maior que zero");
-
         consultingTaxCalculator.calculate(-1000.0);
     }
 }
