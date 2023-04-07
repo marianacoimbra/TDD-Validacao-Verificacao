@@ -12,11 +12,11 @@ public class Bill {
 
     public Bill(String clientName, String clientAddress, ServiceType serviceType, double value) {
         if (clientName == null || clientAddress == null || serviceType == null) {
-            throw new IllegalArgumentException("Invoice information must be not null");
+            throw new IllegalArgumentException("Bill information must be not null");
         }
 
         if (value < 0) {
-            throw new IllegalArgumentException("Invoice value must be equal or greater than zero");
+            throw new IllegalArgumentException("Bill value must be equal or greater than zero");
         }
 
         this.clientName = clientName;

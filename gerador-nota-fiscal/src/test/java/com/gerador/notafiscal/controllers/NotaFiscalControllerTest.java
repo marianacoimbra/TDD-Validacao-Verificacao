@@ -55,4 +55,19 @@ public class NotaFiscalControllerTest {
         assertEquals("Davi Sousa", notaFiscal.getClientName());
         assertEquals(billValue, notaFiscal.getBillValue(), 0);
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowExceptionOnNullClientName() {
+        notaFiscalController.generate(null, "Rua dos Bobos, 0", serviceTypeDescription, billValue);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowExceptionOnNullClientAddress() {
+        notaFiscalController.generate("Davi Sousa", null, serviceTypeDescription, billValue);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowExceptionOnNullServiceType() {
+        notaFiscalController.generate("Davi Sousa", "Rua dos Bobos, 0", null, billValue);
+    }
 }
