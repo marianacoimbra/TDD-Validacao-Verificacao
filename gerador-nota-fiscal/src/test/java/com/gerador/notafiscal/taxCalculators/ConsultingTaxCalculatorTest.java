@@ -14,4 +14,11 @@ public class ConsultingTaxCalculatorTest {
         double tax = consultingTaxCalculator.calculate(1000.0);
         assertEquals(250.0, tax, maxDelta);
     }
+
+    @Test
+    public void shouldCalculateTaxWithZeroValue() {
+        ConsultingTaxCalculator consultingTaxCalculator = new ConsultingTaxCalculator();
+        double tax = consultingTaxCalculator.calculate(0.0);
+        assertEquals(0.0, tax, maxDelta);
+    }
 }
