@@ -25,11 +25,21 @@ public class InvoiceTest {
 
     @Test
     public void shouldGetInvoiceServiceType() {
-        assertEquals("consultoria", defaultInvoice.getServiceType());
+        assertEquals("Consultoria", defaultInvoice.getServiceType());
     }
 
     @Test
     public void shouldGetClientName() {
         assertEquals("Davi Sousa", defaultInvoice.getClientName());
+    }
+
+    @Test
+    public void shouldHasToString() {
+        String expectedString = "Nome do cliente: Davi Sousa\n" +
+                "Endereço do cliente: Rua dos Bobos, 0\n" +
+                "Tipo do serviço: Consultoria\n" +
+                "Valor da fatura: R$245.80";
+
+        assertEquals(expectedString, defaultInvoice.toString());
     }
 }

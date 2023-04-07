@@ -1,9 +1,9 @@
 package com.gerador.notafiscal.models.enums;
 
 public enum ServiceType {
-    CONSULTING("consultoria"),
-    TRAINING("treinamento"),
-    OTHER("outro");
+    CONSULTING("Consultoria"),
+    TRAINING("Treinamento"),
+    OTHER("Outro");
 
     private final String description;
 
