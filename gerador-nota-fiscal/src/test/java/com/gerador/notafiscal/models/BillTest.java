@@ -14,12 +14,12 @@ public class BillTest {
     }
 
     @Test
-    public void shouldCreateInvoice() {
+    public void shouldCreateBill() {
         new Bill("João Alves", "Rua dos Bobos, 0", ServiceType.TRAINING, 34.45);
     }
 
     @Test
-    public void shouldCreateInvoiceWithOtherService() {
+    public void shouldCreateBillWithOtherService() {
         new Bill("João Alves", "Rua dos Bobos, 0", ServiceType.OTHER, 34.45);
     }
 
@@ -49,7 +49,7 @@ public class BillTest {
     }
 
     @Test
-    public void shouldGetInvoiceServiceType() {
+    public void shouldGetBillServiceType() {
         assertEquals("Consultoria", defaultBill.getServiceType());
     }
 
@@ -59,7 +59,7 @@ public class BillTest {
     }
 
     @Test
-    public void shouldGetInvoiceValue() {
+    public void shouldGetBillValue() {
         assertEquals(245.80, defaultBill.getValue(), 0);
     }
 
