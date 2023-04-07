@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -64,5 +65,30 @@ public class NotaFiscalTest {
     @Test
     public void shouldGetTaxValue() {
         assertEquals(expectedTax, defaultNotaFiscal.getTaxValue(), 0.0001);
+    }
+
+    @Test
+    public void shouldHasToString() {
+        DecimalFormat decimalFormat = new DecimalFormat("R$0.00");
+        String formattedBillValue = decimalFormat.format(billValue);
+        String formattedTaxValue = decimalFormat.format(expectedTax);
+
+        String expectedString = "Nome do cliente: Davi Sousa\n" +
+                "Valor da fatura: " + formattedBillValue + "\n" +
+                "Valor do imposto: " + formattedTaxValue;
+
+        assertEquals(expectedString, defaultNotaFiscal.toString());
+    }
+
+    @Test
+    public void testToStringWithZeroValue() {
+        Bill bill = new Bill("João Alves", "Rua dos Bobos, 0", serviceType, 0);
+        NotaFiscal notaFiscal = new NotaFiscal(bill);
+
+        String expectedString = "Nome do cliente: João Alves\n" +
+                "Valor da fatura: R$0.00\n" +
+                "Valor do imposto: R$0.00";
+
+        assertEquals(expectedString, notaFiscal.toString());
     }
 }
