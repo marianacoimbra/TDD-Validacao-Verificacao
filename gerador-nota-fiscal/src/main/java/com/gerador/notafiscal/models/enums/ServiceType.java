@@ -1,5 +1,8 @@
 package com.gerador.notafiscal.models.enums;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum ServiceType {
     CONSULTING("Consultoria"),
     TRAINING("Treinamento"),
@@ -29,5 +32,16 @@ public enum ServiceType {
 
     public String getDescription() {
         return description;
+    }
+
+    public static List<String> getDescriptions() {
+        List<String> descriptions = new ArrayList<>();
+        ServiceType[] serviceTypes = ServiceType.values();
+
+        for (ServiceType serviceType : serviceTypes) {
+            descriptions.add(serviceType.getDescription());
+        }
+
+        return descriptions;
     }
 }
