@@ -4,12 +4,18 @@ import com.gerador.notafiscal.models.Bill;
 import com.gerador.notafiscal.models.NotaFiscal;
 import com.gerador.notafiscal.models.enums.ServiceType;
 import com.gerador.notafiscal.services.NotaFiscalDao;
+import com.gerador.notafiscal.services.SAP;
+import com.gerador.notafiscal.services.SMTP;
 
 public class NotaFiscalController {
     public NotaFiscalDao notaFiscalDao;
+    public SAP sap;
+    public SMTP smtp;
 
-    public NotaFiscalController(NotaFiscalDao notaFiscalDao) {
+    public NotaFiscalController(NotaFiscalDao notaFiscalDao, SAP sap, SMTP smtp) {
         this.notaFiscalDao = notaFiscalDao;
+        this.sap = sap;
+        this.smtp = smtp;
     }
 
     public NotaFiscalController() {
@@ -25,9 +31,14 @@ public class NotaFiscalController {
         Bill bill = new Bill(clientName, clientAddress, serviceType, billValue);
 
         NotaFiscal notaFiscal = new NotaFiscal(bill);
-
-        notaFiscalDao.saveToDB(notaFiscal);
+        sendNotaFiscalWithServices(notaFiscal);
 
         return notaFiscal;
+    }
+
+    private void sendNotaFiscalWithServices(NotaFiscal notaFiscal) {
+        notaFiscalDao.saveToDB(notaFiscal);
+        sap.send(notaFiscal);
+        smtp.send(notaFiscal);
     }
 }

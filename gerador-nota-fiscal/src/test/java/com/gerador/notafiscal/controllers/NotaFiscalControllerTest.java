@@ -2,6 +2,8 @@ package com.gerador.notafiscal.controllers;
 
 import com.gerador.notafiscal.models.NotaFiscal;
 import com.gerador.notafiscal.services.NotaFiscalDao;
+import com.gerador.notafiscal.services.SAP;
+import com.gerador.notafiscal.services.SMTP;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,6 +19,8 @@ import static org.junit.Assert.assertEquals;
 public class NotaFiscalControllerTest {
     public NotaFiscalController notaFiscalController;
     public NotaFiscalDao notaFiscalDao;
+    public SAP sap;
+    public SMTP smtp;
 
     @Parameterized.Parameter
     public String serviceTypeDescription;
@@ -43,7 +47,9 @@ public class NotaFiscalControllerTest {
     @Before
     public void setup() {
         this.notaFiscalDao = mock(NotaFiscalDao.class);
-        this.notaFiscalController = new NotaFiscalController(notaFiscalDao);
+        this.sap = mock(SAP.class);
+        this.smtp = mock(SMTP.class);
+        this.notaFiscalController = new NotaFiscalController(notaFiscalDao, sap, smtp);
     }
 
     @Test
@@ -60,6 +66,8 @@ public class NotaFiscalControllerTest {
         assertEquals(billValue, notaFiscal.getBillValue(), 0);
 
         verify(notaFiscalDao, times(1)).saveToDB(any());
+        verify(sap, times(1)).send(any());
+        verify(smtp, times(1)).send(any());
     }
 
     @Test(expected = IllegalArgumentException.class)
