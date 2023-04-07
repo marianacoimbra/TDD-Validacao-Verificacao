@@ -41,4 +41,10 @@ public class NotaFiscalDaoTest {
 
         assertEquals("Salvando nota fiscal do cliente Davi Sousa no banco de dados...\n", outContent.toString());
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowExceptionOnNullNotaFiscal() {
+        NotaFiscalDao notaFiscalDao = new NotaFiscalDao();
+        notaFiscalDao.saveToDB(null);
+    }
 }

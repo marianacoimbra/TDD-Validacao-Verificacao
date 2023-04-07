@@ -41,4 +41,10 @@ public class SAPTest {
 
         assertEquals("Enviando nota fiscal do cliente Davi Sousa para o SAP...\n", outContent.toString());
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowExceptionOnNullNotaFiscal() {
+        SAP sap = new SAP();
+        sap.send(null);
+    }
 }

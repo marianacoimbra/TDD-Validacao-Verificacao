@@ -4,6 +4,10 @@ import com.gerador.notafiscal.models.NotaFiscal;
 
 public class SAP {
     public void send(NotaFiscal notaFiscal) {
+        if (notaFiscal == null) {
+            throw new IllegalArgumentException("Nota fiscal must not be null");
+        }
+
         System.out.println("Enviando nota fiscal do cliente " + notaFiscal.getClientName() + " para o SAP...");
     }
 }

@@ -41,4 +41,10 @@ public class SMTPTest {
 
         assertEquals("Enviando nota fiscal do cliente Davi Sousa por email...\n", outContent.toString());
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowExceptionOnNullNotaFiscal() {
+        SMTP smtp = new SMTP();
+        smtp.send(null);
+    }
 }
