@@ -2,6 +2,7 @@ package com.gerador.notafiscal;
 
 
 import com.gerador.notafiscal.controllers.NotaFiscalController;
+import com.gerador.notafiscal.models.NotaFiscal;
 import com.gerador.notafiscal.models.enums.ServiceType;
 
 import java.util.List;
@@ -19,17 +20,6 @@ public class App {
         }
 
         return result;
-    }
-
-    public static void main( String[] args ) {
-        System.out.println("=-=-=-=-=-=-=-=-=-=-=-=");
-        System.out.println("Gerador de Nota Fiscal");
-        System.out.println("=-=-=-=-=-=-=-=-=-=-=-=\n");
-
-        String clientName = input("Digite o nome do cliente: ");
-        String clientAddress = input("Digite o endereço do cliente: ");
-
-        String serviceTypeDescription = getServiceTypeDescription();
     }
 
     public static String getServiceTypeDescription() {
@@ -52,5 +42,25 @@ public class App {
         } catch (Exception e) {
             return getServiceTypeDescription();
         }
+    }
+
+    public static void main( String[] args ) {
+        System.out.println("=-=-=-=-=-=-=-=-=-=-=-=");
+        System.out.println("Gerador de Nota Fiscal");
+        System.out.println("=-=-=-=-=-=-=-=-=-=-=-=\n");
+
+        String clientName = input("Digite o nome do cliente: ");
+        String clientAddress = input("Digite o endereço do cliente: ");
+
+        String serviceTypeDescription = getServiceTypeDescription();
+
+        System.out.print("Digite o valor da fatura: ");
+        double billValue = sc.nextDouble();
+
+        System.out.println("\nVamos gerar a nota fiscal para você!");
+        NotaFiscal notaFiscal = controller.generate(clientName, clientAddress, serviceTypeDescription, billValue);
+
+        System.out.println("\nPronto!\nA sua nota fiscal possui os seguintes dados:");
+        System.out.println(notaFiscal);
     }
 }
