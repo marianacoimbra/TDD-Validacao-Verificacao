@@ -5,6 +5,7 @@ import com.gerador.notafiscal.taxCalculators.ConsultingTaxCalculator;
 import com.gerador.notafiscal.taxCalculators.DefaultTaxCalculator;
 import com.gerador.notafiscal.taxCalculators.TaxCalculator;
 import com.gerador.notafiscal.taxCalculators.TrainingTaxCalculator;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -17,6 +18,8 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
 public class ServiceTypeTaxMappingTest {
+    public ServiceTypeTaxMapping serviceTypeTaxMapping;
+
     @Parameter
     public ServiceType serviceType;
 
@@ -33,16 +36,19 @@ public class ServiceTypeTaxMappingTest {
         });
     }
 
+    @Before
+    public void setup() {
+        this.serviceTypeTaxMapping = new ServiceTypeTaxMapping();
+    }
+
     @Test
     public void shouldGetCorrectTaxCalculator() {
-        ServiceTypeTaxMapping taxMapping = new ServiceTypeTaxMapping();
-        TaxCalculator taxCalculator = taxMapping.getTaxCalculator(serviceType);
+        TaxCalculator taxCalculator = serviceTypeTaxMapping.getTaxCalculator(serviceType);
         assertEquals(expectedTaxCalculator.getClass(), taxCalculator.getClass());
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void shouldThrowExceptionOnNullServiceType() {
-        ServiceTypeTaxMapping taxMapping = new ServiceTypeTaxMapping();
-        taxMapping.getTaxCalculator(null);
+        serviceTypeTaxMapping.getTaxCalculator(null);
     }
 }
