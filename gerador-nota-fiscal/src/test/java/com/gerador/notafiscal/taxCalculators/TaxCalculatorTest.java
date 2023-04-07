@@ -6,12 +6,15 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 
+@RunWith(Parameterized.class)
 public class TaxCalculatorTest {
 
-    static private double maxDelta = 0.0001;
+    static private final double maxDelta = 0.0001;
 
     @Parameters
     public static Collection<Object[]> calculators() {
