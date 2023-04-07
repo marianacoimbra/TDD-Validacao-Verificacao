@@ -11,6 +11,8 @@ import org.junit.runners.Parameterized;
 
 import java.util.Arrays;
 import java.util.Collection;
+
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.*;
 
 import static org.junit.Assert.assertEquals;
@@ -51,7 +53,10 @@ public class NotaFiscalControllerTest {
 
     @Test
     public void shouldCreateNotaFiscalController() {
-        this.notaFiscalController = new NotaFiscalController();
+        NotaFiscalController controller = new NotaFiscalController();
+        assertNotNull(controller.notaFiscalDao);
+        assertNotNull(controller.sap);
+        assertNotNull(controller.smtp);
     }
 
     @Test

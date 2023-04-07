@@ -20,6 +20,8 @@ public class NotaFiscalController {
 
     public NotaFiscalController() {
         this.notaFiscalDao = new NotaFiscalDao();
+        this.sap = new SAP();
+        this.smtp = new SMTP();
     }
 
     public NotaFiscal generate(String clientName, String clientAddress, String serviceTypeDescription, double billValue) {
