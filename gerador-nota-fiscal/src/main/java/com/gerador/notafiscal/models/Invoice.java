@@ -11,6 +11,14 @@ public class Invoice {
     private final double value;
 
     public Invoice(String clientName, String clientAddress, ServiceType serviceType, double value) {
+        if (clientName == null || clientAddress == null || serviceType == null) {
+            throw new IllegalArgumentException("Invoice information must be not null");
+        }
+
+        if (value < 0) {
+            throw new IllegalArgumentException("Invoice value must be equal or greater than zero");
+        }
+
         this.clientName = clientName;
         this.clientAddress = clientAddress;
         this.serviceType = serviceType;
