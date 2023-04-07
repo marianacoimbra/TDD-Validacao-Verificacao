@@ -26,7 +26,7 @@ public class NotaFiscalTest {
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][] {
-                // Run tests for each service type and its expected taxes
+                // Executar testes para cada tipo de serviço com os seus impostos esperados
                 { ServiceType.CONSULTING, 1000.0, 250.0 },
                 { ServiceType.TRAINING, 1000.0, 150.0 },
                 { ServiceType.OTHER, 1000.0, 60.0 }

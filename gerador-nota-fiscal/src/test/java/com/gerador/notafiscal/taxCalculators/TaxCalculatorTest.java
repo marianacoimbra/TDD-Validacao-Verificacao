@@ -28,7 +28,7 @@ public class TaxCalculatorTest {
     @Parameters
     public static Collection<Object[]> calculators() {
         return Arrays.asList(new Object[][] {
-                // Run tests for each tax calculator and its expected taxes
+                // Executar testes para cada calculadora com os seus impostos esperados
                 { new ConsultingTaxCalculator(), 1000.0, 250.0 },
                 { new TrainingTaxCalculator(), 1000.0, 150.0 },
                 { new DefaultTaxCalculator(), 1000.0, 60.0 }
