@@ -10,7 +10,7 @@ public class ConsultingTaxCalculatorTest {
     static public double maxDelta = 0.0001;
 
     @Rule
-    public NegativeValueToTaxCalculatorException thrown = NegativeValueToTaxCalculatorException.none();
+    public TaxNegativeValueException thrown = TaxNegativeValueException.none();
 
     @Test
     public void shouldCalculateTax() {
@@ -30,7 +30,7 @@ public class ConsultingTaxCalculatorTest {
     public void shouldThrowErrorWithNegativeValue() {
         ConsultingTaxCalculator consultingTaxCalculator = new ConsultingTaxCalculator();
 
-        thrown.expect(NegativeValueToTaxCalculatorException.class);
+        thrown.expect(TaxNegativeValueException.class);
         thrown.expectMessage("Valor para o calculo de imposto deve ser maior que zero");
 
         consultingTaxCalculator.calculate(-1000.0);
