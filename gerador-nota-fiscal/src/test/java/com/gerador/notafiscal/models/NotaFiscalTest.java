@@ -18,7 +18,7 @@ public class NotaFiscalTest {
     public ServiceType serviceType;
 
     @Parameterized.Parameter(1)
-    public double initialValue;
+    public double billValue;
 
     @Parameterized.Parameter(2)
     public double expectedTax;
@@ -35,13 +35,17 @@ public class NotaFiscalTest {
 
     @Before
     public void setup() {
-        this.defaultBill = new Bill("Davi Sousa", "Rua dos Bobos, 0", ServiceType.CONSULTING, 245.80);
+        this.defaultBill = new Bill("Davi Sousa", "Rua dos Bobos, 0", serviceType, billValue);
         this.defaultNotaFiscal = new NotaFiscal(defaultBill);
     }
 
     @Test
     public void shouldCreateNotaFiscal() {
-        Bill bill = new Bill("João Alves", "Rua dos Bobos, 0", serviceType, initialValue);
-        new NotaFiscal(bill);
+        new NotaFiscal(defaultBill);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrownExceptionOnNullBill() {
+        new NotaFiscal(null);
     }
 }
