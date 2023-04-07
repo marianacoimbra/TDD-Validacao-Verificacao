@@ -14,4 +14,12 @@ public class Invoice {
         this.serviceType = serviceType;
         this.value = value;
     }
+
+    public String getServiceType() {
+        return serviceType.getDescription();
+    }
+
+    public String getClientName() {
+        return clientName;
+    }
 }
