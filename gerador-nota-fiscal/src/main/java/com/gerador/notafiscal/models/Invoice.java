@@ -33,6 +33,10 @@ public class Invoice {
         return clientName;
     }
 
+    public double getValue() {
+        return value;
+    }
+
     public String toString() {
         String result = "Nome do cliente: " + clientName + "\n";
         result += "Endereço do cliente: " + clientAddress + "\n";

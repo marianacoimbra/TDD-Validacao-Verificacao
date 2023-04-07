@@ -59,6 +59,11 @@ public class InvoiceTest {
     }
 
     @Test
+    public void shouldGetInvoiceValue() {
+        assertEquals(245.80, defaultInvoice.getValue(), 0);
+    }
+
+    @Test
     public void shouldHasToString() {
         String expectedString = "Nome do cliente: Davi Sousa\n" +
                 "Endereço do cliente: Rua dos Bobos, 0\n" +
