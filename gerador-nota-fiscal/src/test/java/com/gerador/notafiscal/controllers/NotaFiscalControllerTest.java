@@ -16,6 +16,7 @@ import static org.junit.Assert.assertEquals;
 @RunWith(Parameterized.class)
 public class NotaFiscalControllerTest {
     public NotaFiscalController notaFiscalController;
+    public NotaFiscalDao notaFiscalDao;
 
     @Parameterized.Parameter
     public String serviceTypeDescription;
@@ -41,7 +42,8 @@ public class NotaFiscalControllerTest {
 
     @Before
     public void setup() {
-        this.notaFiscalController = new NotaFiscalController();
+        this.notaFiscalDao = mock(NotaFiscalDao.class);
+        this.notaFiscalController = new NotaFiscalController(notaFiscalDao);
     }
 
     @Test
@@ -51,16 +53,13 @@ public class NotaFiscalControllerTest {
 
     @Test
     public void testGenerate() {
-        NotaFiscalDao dao = mock(NotaFiscalDao.class);
-
-        NotaFiscalController mockedController = new NotaFiscalController(dao);
-        NotaFiscal notaFiscal = mockedController.generate("Davi Sousa", "Rua dos Bobos, 0", serviceTypeDescription, billValue);
+        NotaFiscal notaFiscal = notaFiscalController.generate("Davi Sousa", "Rua dos Bobos, 0", serviceTypeDescription, billValue);
 
         assertEquals(expectedTax, notaFiscal.getTaxValue(), 0.0001);
         assertEquals("Davi Sousa", notaFiscal.getClientName());
         assertEquals(billValue, notaFiscal.getBillValue(), 0);
 
-        verify(dao, times(1)).saveToDB(any());
+        verify(notaFiscalDao, times(1)).saveToDB(any());
     }
 
     @Test(expected = IllegalArgumentException.class)
