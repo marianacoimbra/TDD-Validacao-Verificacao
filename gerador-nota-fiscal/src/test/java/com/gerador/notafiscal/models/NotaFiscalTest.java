@@ -11,7 +11,7 @@ import java.util.Collection;
 
 @RunWith(Parameterized.class)
 public class NotaFiscalTest {
-    public Invoice defaultInvoice;
+    public Bill defaultBill;
     public NotaFiscal defaultNotaFiscal;
 
     @Parameterized.Parameter
@@ -35,13 +35,13 @@ public class NotaFiscalTest {
 
     @Before
     public void setup() {
-        this.defaultInvoice = new Invoice("Davi Sousa", "Rua dos Bobos, 0", ServiceType.CONSULTING, 245.80);
-        this.defaultNotaFiscal = new NotaFiscal(defaultInvoice);
+        this.defaultBill = new Bill("Davi Sousa", "Rua dos Bobos, 0", ServiceType.CONSULTING, 245.80);
+        this.defaultNotaFiscal = new NotaFiscal(defaultBill);
     }
 
     @Test
     public void shouldCreateNotaFiscal() {
-        Invoice invoice = new Invoice("João Alves", "Rua dos Bobos, 0", serviceType, initialValue);
-        new NotaFiscal(invoice);
+        Bill bill = new Bill("João Alves", "Rua dos Bobos, 0", serviceType, initialValue);
+        new NotaFiscal(bill);
     }
 }

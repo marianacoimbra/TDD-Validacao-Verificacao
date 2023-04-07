@@ -4,13 +4,13 @@ import com.gerador.notafiscal.models.enums.ServiceType;
 
 import java.text.DecimalFormat;
 
-public class Invoice {
+public class Bill {
     private final String clientName;
     private final String clientAddress;
     private final ServiceType serviceType;
     private final double value;
 
-    public Invoice(String clientName, String clientAddress, ServiceType serviceType, double value) {
+    public Bill(String clientName, String clientAddress, ServiceType serviceType, double value) {
         if (clientName == null || clientAddress == null || serviceType == null) {
             throw new IllegalArgumentException("Invoice information must be not null");
         }

@@ -1,9 +1,9 @@
 package com.gerador.notafiscal.models;
 
 public class NotaFiscal {
-    private final Invoice invoice;
+    private final Bill bill;
 
-    public NotaFiscal(Invoice invoice) {
-        this.invoice = invoice;
+    public NotaFiscal(Bill bill) {
+        this.bill = bill;
     }
 }
