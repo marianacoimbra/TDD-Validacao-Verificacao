@@ -56,11 +56,18 @@ public class App {
 
         System.out.print("Digite o valor da fatura: ");
         double billValue = sc.nextDouble();
+        sc.nextLine();
 
         System.out.println("\nVamos gerar a nota fiscal para você!");
         NotaFiscal notaFiscal = controller.generate(clientName, clientAddress, serviceTypeDescription, billValue);
 
         System.out.println("\nPronto!\nA sua nota fiscal possui os seguintes dados:");
         System.out.println(notaFiscal);
+
+        String continueOption = input("\nDeseja gerar outra nota fiscal? (s/n) ");
+        if (continueOption.equalsIgnoreCase("s")) {
+            System.out.println("\n\n\n");
+            main(args);
+        }
     }
 }
