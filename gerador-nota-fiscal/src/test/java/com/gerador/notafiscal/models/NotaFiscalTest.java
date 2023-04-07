@@ -60,4 +60,9 @@ public class NotaFiscalTest {
     public void shouldGetBillValue() {
         assertEquals(billValue, defaultNotaFiscal.getBillValue(), 0);
     }
+
+    @Test
+    public void shouldGetTaxValue() {
+        assertEquals(expectedTax, defaultNotaFiscal.getTaxValue(), 0.0001);
+    }
 }

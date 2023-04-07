@@ -18,4 +18,8 @@ public class NotaFiscal {
     public double getBillValue() {
         return bill.getValue();
     }
+
+    public double getTaxValue() {
+        return 0;
+    }
 }
