@@ -52,7 +52,7 @@ public class BillTest {
     public void shouldGetBillServiceType() {
         assertEquals(ServiceType.CONSULTING, defaultBill.getServiceType());
     }
-    
+
     @Test
     public void shouldGetBillServiceTypeDescription() {
         assertEquals("Consultoria", defaultBill.getServiceTypeDescription());

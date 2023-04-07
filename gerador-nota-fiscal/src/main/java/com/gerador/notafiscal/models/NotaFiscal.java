@@ -1,5 +1,8 @@
 package com.gerador.notafiscal.models;
 
+import com.gerador.notafiscal.ServiceTypeTaxMapping;
+import com.gerador.notafiscal.taxCalculators.TaxCalculator;
+
 public class NotaFiscal {
     private final Bill bill;
 
@@ -20,6 +23,8 @@ public class NotaFiscal {
     }
 
     public double getTaxValue() {
-        return 0;
+        ServiceTypeTaxMapping mapping = new ServiceTypeTaxMapping();
+        TaxCalculator taxCalculator = mapping.getTaxCalculator(bill.getServiceType());
+        return taxCalculator.calculate(getBillValue());
     }
 }
