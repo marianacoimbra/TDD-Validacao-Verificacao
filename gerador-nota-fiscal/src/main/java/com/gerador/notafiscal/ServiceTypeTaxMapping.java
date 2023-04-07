@@ -28,6 +28,11 @@ public class ServiceTypeTaxMapping {
             throw new IllegalArgumentException("Service type must not be null");
         }
 
-        return mapping.get(serviceType);
+        TaxCalculator taxCalculator = mapping.get(serviceType);
+        if (taxCalculator == null) {
+            throw new IllegalArgumentException("Service type must be mapped to a tax calculator");
+        }
+
+        return taxCalculator;
     }
 }

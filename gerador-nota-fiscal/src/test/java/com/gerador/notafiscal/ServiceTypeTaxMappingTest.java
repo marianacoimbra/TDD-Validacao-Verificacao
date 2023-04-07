@@ -11,8 +11,10 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 
+import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 
 import static org.junit.Assert.assertEquals;
 
@@ -50,5 +52,19 @@ public class ServiceTypeTaxMappingTest {
     @Test(expected = IllegalArgumentException.class)
     public void shouldThrowExceptionOnNullServiceType() {
         serviceTypeTaxMapping.getTaxCalculator(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowExceptionOnUnknownServiceType() throws NoSuchFieldException, IllegalAccessException {
+        // Tornamos o campo privado "mapping" acessível, para modificá-lo nesse teste
+        Field mapping = ServiceTypeTaxMapping.class.getDeclaredField("mapping");
+        mapping.setAccessible(true);
+
+        // Atualiza o campo "mapping" para ser um Map vazio, sem calculadoras registradas
+        ServiceTypeTaxMapping taxMapping = new ServiceTypeTaxMapping();
+        mapping.set(taxMapping, new HashMap<ServiceType, TaxCalculator>());
+
+        // Deveria lançar IllegalArgumentException
+        taxMapping.getTaxCalculator(serviceType);
     }
 }
