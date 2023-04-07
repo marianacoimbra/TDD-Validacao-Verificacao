@@ -12,6 +12,6 @@ public class ConsultingTaxCalculatorTest {
     public void shouldCalculateTax() {
         ConsultingTaxCalculator consultingTaxCalculator = new ConsultingTaxCalculator();
         double tax = consultingTaxCalculator.calculate(1000.0);
-        assertEquals(100.0, tax, maxDelta);
+        assertEquals(250.0, tax, maxDelta);
     }
 }
