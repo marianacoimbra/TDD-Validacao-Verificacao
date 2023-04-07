@@ -20,6 +20,7 @@ public class TaxCalculatorTest {
     public static Collection<Object[]> calculators() {
         return Arrays.asList(new Object[][] {
                 { new ConsultingTaxCalculator(), 0.25 },
+                { new TrainingTaxCalculator(), 0.15 }
         });
     }
 
