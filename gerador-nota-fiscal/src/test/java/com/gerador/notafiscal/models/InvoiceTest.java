@@ -1,5 +1,6 @@
 package com.gerador.notafiscal.models;
 
+import com.gerador.notafiscal.models.enums.ServiceType;
 import org.junit.Before;
 import org.junit.Test;
 
