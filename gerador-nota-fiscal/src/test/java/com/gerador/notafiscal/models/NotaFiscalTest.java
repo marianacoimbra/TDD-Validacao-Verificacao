@@ -9,6 +9,8 @@ import org.junit.runners.Parameterized;
 import java.util.Arrays;
 import java.util.Collection;
 
+import static org.junit.Assert.assertEquals;
+
 @RunWith(Parameterized.class)
 public class NotaFiscalTest {
     public Bill defaultBill;
@@ -47,5 +49,10 @@ public class NotaFiscalTest {
     @Test(expected = IllegalArgumentException.class)
     public void shouldThrownExceptionOnNullBill() {
         new NotaFiscal(null);
+    }
+
+    @Test
+    public void shouldGetClientName() {
+        assertEquals("Davi Sousa", defaultNotaFiscal.getClientName());
     }
 }

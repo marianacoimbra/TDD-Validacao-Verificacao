@@ -10,4 +10,8 @@ public class NotaFiscal {
 
         this.bill = bill;
     }
+
+    public String getClientName() {
+        return bill.getClientName();
+    }
 }
