@@ -1,6 +1,6 @@
 package com.gerador.notafiscal.models;
 
-import com.gerador.notafiscal.ServiceTypeTaxMapping;
+import com.gerador.notafiscal.mappings.ServiceTypeTaxMapping;
 import com.gerador.notafiscal.taxCalculators.TaxCalculator;
 
 public class NotaFiscal {

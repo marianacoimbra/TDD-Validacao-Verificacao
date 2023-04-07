@@ -1,4 +1,4 @@
-package com.gerador.notafiscal;
+package com.gerador.notafiscal.mappings;
 
 import com.gerador.notafiscal.models.enums.ServiceType;
 import com.gerador.notafiscal.taxCalculators.ConsultingTaxCalculator;
