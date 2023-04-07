@@ -1,6 +1,7 @@
 package com.gerador.notafiscal.controllers;
 
 import com.gerador.notafiscal.models.NotaFiscal;
+import com.gerador.notafiscal.services.NotaFiscalDao;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,6 +9,7 @@ import org.junit.runners.Parameterized;
 
 import java.util.Arrays;
 import java.util.Collection;
+import static org.mockito.Mockito.*;
 
 import static org.junit.Assert.assertEquals;
 
@@ -49,11 +51,16 @@ public class NotaFiscalControllerTest {
 
     @Test
     public void testGenerate() {
-        NotaFiscal notaFiscal = notaFiscalController.generate("Davi Sousa", "Rua dos Bobos, 0", serviceTypeDescription, billValue);
+        NotaFiscalDao dao = mock(NotaFiscalDao.class);
+
+        NotaFiscalController mockedController = new NotaFiscalController(dao);
+        NotaFiscal notaFiscal = mockedController.generate("Davi Sousa", "Rua dos Bobos, 0", serviceTypeDescription, billValue);
 
         assertEquals(expectedTax, notaFiscal.getTaxValue(), 0.0001);
         assertEquals("Davi Sousa", notaFiscal.getClientName());
         assertEquals(billValue, notaFiscal.getBillValue(), 0);
+
+        verify(dao, times(1)).saveToDB(any());
     }
 
     @Test(expected = IllegalArgumentException.class)
