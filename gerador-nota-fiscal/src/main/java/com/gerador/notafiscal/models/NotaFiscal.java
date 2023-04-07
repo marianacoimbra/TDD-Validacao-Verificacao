@@ -14,4 +14,8 @@ public class NotaFiscal {
     public String getClientName() {
         return bill.getClientName();
     }
+
+    public double getBillValue() {
+        return bill.getValue();
+    }
 }

@@ -55,4 +55,9 @@ public class NotaFiscalTest {
     public void shouldGetClientName() {
         assertEquals("Davi Sousa", defaultNotaFiscal.getClientName());
     }
+
+    @Test
+    public void shouldGetBillValue() {
+        assertEquals(billValue, defaultNotaFiscal.getBillValue(), 0);
+    }
 }
