@@ -50,7 +50,12 @@ public class BillTest {
 
     @Test
     public void shouldGetBillServiceType() {
-        assertEquals("Consultoria", defaultBill.getServiceType());
+        assertEquals(ServiceType.CONSULTING, defaultBill.getServiceType());
+    }
+    
+    @Test
+    public void shouldGetBillServiceTypeDescription() {
+        assertEquals("Consultoria", defaultBill.getServiceTypeDescription());
     }
 
     @Test

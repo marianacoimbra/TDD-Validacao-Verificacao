@@ -25,7 +25,11 @@ public class Bill {
         this.value = value;
     }
 
-    public String getServiceType() {
+    public ServiceType getServiceType() {
+        return serviceType;
+    }
+
+    public String getServiceTypeDescription() {
         return serviceType.getDescription();
     }
 
