@@ -1,5 +1,7 @@
 package com.gerador.notafiscal.taxCalculators;
 
+import java.util.Objects;
+
 public class TaxCalculator {
     private final double taxRate;
 
