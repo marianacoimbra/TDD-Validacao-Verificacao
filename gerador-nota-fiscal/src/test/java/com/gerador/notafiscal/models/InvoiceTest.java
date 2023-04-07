@@ -8,11 +8,11 @@ public class InvoiceTest {
 
     @Before
     public void setup() {
-        this.defaultInvoice = new Invoice("Davi Sousa", "Rua dos Bobos, 0", InvoiceType.CONSULTING, 245.80);
+        this.defaultInvoice = new Invoice("Davi Sousa", "Rua dos Bobos, 0", ServiceType.CONSULTING, 245.80);
     }
 
     @Test
     public void shouldCreateInvoice() {
-        new Invoice("João Alves", "Rua dos Bobos, 0", InvoiceType.TRAINING, 34.45);
+        new Invoice("João Alves", "Rua dos Bobos, 0", ServiceType.TRAINING, 34.45);
     }
 }
