@@ -16,28 +16,27 @@ public class TaxCalculatorTest {
 
     static private final double maxDelta = 0.0001;
 
-    @Parameters
-    public static Collection<Object[]> calculators() {
-        return Arrays.asList(new Object[][] {
-                { new ConsultingTaxCalculator(), 0.25 },
-                { new TrainingTaxCalculator(), 0.15 },
-                { new DefaultTaxCalculator(), 0.06 }
-        });
-    }
-
     @Parameter
     public TaxCalculator calculator;
 
     @Parameter(1)
-    public double expectedTaxRate;
+    public double initialValue;
+
+    @Parameter(2)
+    public double expectedTax;
+
+    @Parameters
+    public static Collection<Object[]> calculators() {
+        return Arrays.asList(new Object[][] {
+                { new ConsultingTaxCalculator(), 1000.0, 250.0 },
+                { new TrainingTaxCalculator(), 1000.0, 150.0 },
+                { new DefaultTaxCalculator(), 1000.0, 60.0 }
+        });
+    }
 
     @Test
     public void shouldCalculateTax() {
-        double initialValue = 1000.0;
-
         double tax = calculator.calculate(initialValue);
-
-        double expectedTax = initialValue * expectedTaxRate;
         assertEquals(expectedTax, tax, maxDelta);
     }
 
@@ -49,6 +48,6 @@ public class TaxCalculatorTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void shouldThrowErrorWithNegativeValue() {
-        calculator.calculate(-1000.0);
+        calculator.calculate(-initialValue);
     }
 }
