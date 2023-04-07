@@ -38,9 +38,6 @@ public class NotaFiscalControllerTest {
                 { "Consultoria", 1000.0, 250.0 },
                 { "Treinamento", 1000.0, 150.0 },
                 { "Outro", 1000.0, 60.0 },
-                { "Consultoria", 0, 0 },
-                { "Treinamento", 0, 0 },
-                { "Outro", 0, 0 },
         });
     }
 
@@ -70,6 +67,19 @@ public class NotaFiscalControllerTest {
         verify(smtp, times(1)).send(any());
     }
 
+    @Test
+    public void testGenerateWithZeroBillValue() {
+        NotaFiscal notaFiscal = notaFiscalController.generate("Davi Sousa", "Rua dos Bobos, 0", serviceTypeDescription, 0);
+
+        assertEquals(0, notaFiscal.getTaxValue(), 0);
+        assertEquals("Davi Sousa", notaFiscal.getClientName());
+        assertEquals(0, notaFiscal.getBillValue(), 0);
+
+        verify(notaFiscalDao, times(1)).saveToDB(any());
+        verify(sap, times(1)).send(any());
+        verify(smtp, times(1)).send(any());
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void shouldThrowExceptionOnNullClientName() {
         notaFiscalController.generate(null, "Rua dos Bobos, 0", serviceTypeDescription, billValue);
@@ -83,5 +93,10 @@ public class NotaFiscalControllerTest {
     @Test(expected = IllegalArgumentException.class)
     public void shouldThrowExceptionOnNullServiceType() {
         notaFiscalController.generate("Davi Sousa", "Rua dos Bobos, 0", null, billValue);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowExceptionOnNegativeBillValue() {
+        notaFiscalController.generate("Davi Sousa", "Rua dos Bobos, 0", serviceTypeDescription, -billValue);
     }
 }
