@@ -1,10 +1,6 @@
 package com.gerador.notafiscal.models;
 
 import com.gerador.notafiscal.models.enums.ServiceType;
-import com.gerador.notafiscal.taxCalculators.ConsultingTaxCalculator;
-import com.gerador.notafiscal.taxCalculators.DefaultTaxCalculator;
-import com.gerador.notafiscal.taxCalculators.TaxCalculator;
-import com.gerador.notafiscal.taxCalculators.TrainingTaxCalculator;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,9 +10,9 @@ import java.util.Arrays;
 import java.util.Collection;
 
 @RunWith(Parameterized.class)
-public class TaxInvoiceTest {
+public class NotaFiscalTest {
     public Invoice defaultInvoice;
-    public TaxInvoice defaultTaxInvoice;
+    public NotaFiscal defaultNotaFiscal;
 
     @Parameterized.Parameter
     public ServiceType serviceType;
@@ -40,12 +36,12 @@ public class TaxInvoiceTest {
     @Before
     public void setup() {
         this.defaultInvoice = new Invoice("Davi Sousa", "Rua dos Bobos, 0", ServiceType.CONSULTING, 245.80);
-        this.defaultTaxInvoice = new TaxInvoice(defaultInvoice);
+        this.defaultNotaFiscal = new NotaFiscal(defaultInvoice);
     }
 
     @Test
-    public void shouldCreateTaxInvoice() {
+    public void shouldCreateNotaFiscal() {
         Invoice invoice = new Invoice("João Alves", "Rua dos Bobos, 0", serviceType, initialValue);
-        new TaxInvoice(invoice);
+        new NotaFiscal(invoice);
     }
 }
