@@ -67,4 +67,16 @@ public class InvoiceTest {
 
         assertEquals(expectedString, defaultInvoice.toString());
     }
+
+    @Test
+    public void testToStringWithZeroValue() {
+        Invoice invoice = new Invoice("João Alves", "Rua dos Bobos, 0", ServiceType.TRAINING, 0);
+
+        String expectedString = "Nome do cliente: João Alves\n" +
+                "Endereço do cliente: Rua dos Bobos, 0\n" +
+                "Tipo do serviço: Treinamento\n" +
+                "Valor da fatura: R$0.00";
+
+        assertEquals(expectedString, invoice.toString());
+    }
 }
