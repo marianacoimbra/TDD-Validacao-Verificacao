@@ -1,5 +1,8 @@
 # TDD-Validacao-Verificacao
-Repositório para a atividade de TDD da disciplina Validação e Verificação de Software 
+Repositório para a atividade de TDD da disciplina Validação e Verificação de Software
+
+- Mariana Coimbra (118210644): Processador de boletos
+- Davi Sousa (119210408): Gerador de nota fiscal
 
 ## Experiência da dupla ao utilizar TDD
 
