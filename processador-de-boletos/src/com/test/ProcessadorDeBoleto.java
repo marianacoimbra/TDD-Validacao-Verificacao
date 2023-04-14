@@ -53,4 +53,17 @@ public class ProcessadorDeBoleto {
 
         assertFalse(fatura.isPaga());
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void processarComListaVaziaDeveLancarExcecao() {
+        // given
+        List<Boleto> boletosVazios = new ArrayList<>();
+        Fatura fatura = new Fatura(LocalDate.now(), new BigDecimal("1500.00"), "Cliente");
+
+        // when
+        processador.processar(boletosVazios, fatura);
+
+        // then expect an IllegalArgumentException to be thrown
+    }
+
 }

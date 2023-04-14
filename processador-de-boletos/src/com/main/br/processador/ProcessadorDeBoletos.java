@@ -10,6 +10,11 @@ import java.util.List;
 
 public class ProcessadorDeBoletos {
     public void processar(List<Boleto> boletos, Fatura fatura) {
+
+        if (boletos == null || boletos.isEmpty()) {
+            throw new IllegalArgumentException("A lista de boletos não pode estar vazia.");
+        }
+
         BigDecimal valorTotalPago = BigDecimal.ZERO;
 
         for (Boleto boleto : boletos) {
