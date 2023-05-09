@@ -1,5 +1,9 @@
 package com.test;
 
+import com.main.Exceptions.BoletosIncorretosException;
+import com.main.Exceptions.DadosDoClienteException;
+import com.main.Exceptions.FaturaIncorretaException;
+import com.main.Exceptions.FaturaNaoPagaException;
 import com.main.br.processador.ProcessadorDeBoletos;
 import com.main.br.processador.boleto.Boleto;
 import com.main.br.processador.fatura.Fatura;
@@ -32,7 +36,7 @@ public class ProcessadorDeBoleto {
     }
 
     @Test
-    public void deveMarcarFaturaComoPaga() {
+    public void deveMarcarFaturaComoPaga() throws BoletosIncorretosException, DadosDoClienteException, FaturaIncorretaException, FaturaNaoPagaException {
         listaBoletos.add(boleto1);
         listaBoletos.add(boleto2);
         listaBoletos.add(boleto3);
@@ -41,7 +45,17 @@ public class ProcessadorDeBoleto {
     }
 
     @Test
-    public void deveMarcarFaturaComoNaoPaga() {
+    public void deveMarcarFaturaComoPagaSomaMaiorQueValor() throws BoletosIncorretosException, DadosDoClienteException, FaturaIncorretaException, FaturaNaoPagaException {
+        listaBoletos.add(boleto1);
+        listaBoletos.add(boleto2);
+        listaBoletos.add(boleto3);
+        listaBoletos.add(boleto1);
+        processador.processar(listaBoletos, fatura);
+        assertTrue(fatura.isPaga());
+    }
+
+    @Test(expected = FaturaNaoPagaException.class)
+    public void deveMarcarFaturaComoNaoPaga() throws BoletosIncorretosException, DadosDoClienteException, FaturaIncorretaException, FaturaNaoPagaException {
         List<Boleto> boletos = new ArrayList<>();
         boletos.add(new Boleto("111", new Date(02-04-2023), new BigDecimal("500.00")));
         boletos.add(new Boleto("222", new Date(04-04-2023), new BigDecimal("400.00")));
@@ -54,8 +68,8 @@ public class ProcessadorDeBoleto {
         assertFalse(fatura.isPaga());
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void processarComListaVaziaDeveLancarExcecao() {
+    @Test(expected = BoletosIncorretosException.class)
+    public void processarComListaVaziaDeveLancarExcecao() throws BoletosIncorretosException, DadosDoClienteException, FaturaIncorretaException, FaturaNaoPagaException {
         // given
         List<Boleto> boletosVazios = new ArrayList<>();
         Fatura fatura = new Fatura(LocalDate.now(), new BigDecimal("1500.00"), "Cliente");

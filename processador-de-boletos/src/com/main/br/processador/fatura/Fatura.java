@@ -1,7 +1,6 @@
 package com.main.br.processador.fatura;
 
 import java.math.BigDecimal;
-import java.sql.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -58,6 +57,10 @@ public class Fatura {
 
     public void adicionarPagamento(Pagamento pagamento) {
         this.pagamentos.add(pagamento);
+    }
+
+    public List<Pagamento> getPagamentos() {
+        return this.pagamentos;
     }
 }
 
