@@ -88,7 +88,7 @@ public class TabelaDeDecisao {
     }
 
     @Test
-    public void naoDeveCriarPagamentosCasoDeTeste8() throws FaturaIncorretaException, BoletosIncorretosException, DadosDoClienteException, FaturaNaoPagaException {
+    public void deveCriarPagamentosCasoDeTeste8() throws FaturaIncorretaException, BoletosIncorretosException, DadosDoClienteException, FaturaNaoPagaException {
         listaBoletos.add(boletoValido);
         processador.processar(listaBoletos, nomeClienteValido);
         assertFalse(nomeClienteValido.getPagamentos().isEmpty());
@@ -96,7 +96,7 @@ public class TabelaDeDecisao {
     }
 
     @Test(expected = FaturaNaoPagaException.class)
-    public void naoDeveCriarPagamentosCasoDeTeste9() throws FaturaIncorretaException, BoletosIncorretosException, DadosDoClienteException, FaturaNaoPagaException {
+    public void naoDeveMarcarComoPagaCasoDeTeste9() throws FaturaIncorretaException, BoletosIncorretosException, DadosDoClienteException, FaturaNaoPagaException {
         Boleto boletoValidoMenorQueFatura = new Boleto("0", new Date(02-04-2023), new BigDecimal("10.00"));
         Boleto boletoValidoMenorQueFatura2 = new Boleto("1", new Date(02-04-2023), new BigDecimal("10.00"));
 
@@ -108,7 +108,7 @@ public class TabelaDeDecisao {
     }
 
     @Test
-    public void naoDeveCriarPagamentosCasoDeTeste10() throws FaturaIncorretaException, BoletosIncorretosException, DadosDoClienteException, FaturaNaoPagaException {
+    public void deveMarcarComoPagaCasoDeTeste10() throws FaturaIncorretaException, BoletosIncorretosException, DadosDoClienteException, FaturaNaoPagaException {
         Boleto boletoValido2 = new Boleto("0", new Date(02-04-2023), new BigDecimal("300.00"));
 
         listaBoletos.add(boletoValido);
@@ -119,7 +119,7 @@ public class TabelaDeDecisao {
     }
 
     @Test
-    public void naoDeveCriarPagamentosCasoDeTeste11() throws FaturaIncorretaException, BoletosIncorretosException, DadosDoClienteException, FaturaNaoPagaException {
+    public void deveMarcarComoPagaCasoDeTeste11() throws FaturaIncorretaException, BoletosIncorretosException, DadosDoClienteException, FaturaNaoPagaException {
         Boleto boletoValido2 = new Boleto("0", new Date(02-04-2023), new BigDecimal("400.00"));
 
         listaBoletos.add(boletoValido);
